@@ -3,7 +3,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const {parse} = require('./node_modules/node-html-parser')
-const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
+// const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 
 const API_KEY =
   'eyJhbGciOiJIUzI1NiIsICJ0eXAiOiJKV1QifQ.eyJjdXN0b21lciI6Ik1vbm9saXRoTVMifQ.3zbHqLVUFKrq3fNRA86IYgV-Qg4h1XdauH_-_Z__h3o';
@@ -48,7 +48,7 @@ function startServer() {
   const app = express();
 
   // Redirect HTTP to HTTPS,
-  app.use(redirectToHTTPS([/localhost:(\d{4})/], [], 301));
+  // app.use(redirectToHTTPS([/localhost:(\d{4})/], [], 301));
 
   // Logging for each request
   app.use((req, resp, next) => {

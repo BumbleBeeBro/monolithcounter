@@ -23,9 +23,6 @@ installButton.addEventListener('click', installPWA);
 
 window.addEventListener('beforeinstallprompt', saveBeforeInstallPromptEvent);
 
-deferredInstallPrompt = evt;
-installButton.removeAttribute('hidden');
-
 /**
  * Event handler for beforeinstallprompt event.
  *   Saves the event & shows install button.

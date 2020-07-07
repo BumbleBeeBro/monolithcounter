@@ -23,39 +23,6 @@ const weatherApp = {
 };
 
 /**
- * Renders the forecast data into the card element.
- *
- * @param {Element} card The card element to update.
- * @param {Object} data Weather forecast data to update the element with.
- */
-function renderForecast(card, data) {
-  if (!data) {
-    // There's no data, skip the update.
-    return;
-  }
-
-  // // Find out when the element was last updated.
-  // const cardLastUpdatedElem = card.querySelector('.card-last-updated');
-  // const cardLastUpdated = cardLastUpdatedElem.textContent;
-  // const lastUpdated = parseInt(cardLastUpdated);
-
-  // // If the data on the element is newer, skip the update.
-  // if (lastUpdated >= data.currently.time) {
-  //   return;
-  // }
-  // cardLastUpdatedElem.textContent = data.currently.time;
-
-  // Render the forecast data into the card.
-  card.querySelector('.description').textContent = data;
-
-  // If the loading spinner is still visible, remove it.
-  const spinner = card.querySelector('.card-spinner');
-  if (spinner) {
-    card.removeChild(spinner);
-  }
-}
-
-/**
  * Get's the latest forecast data from the network.
  *
  * @param {string} coords Location object to.
@@ -86,6 +53,12 @@ function getForecastFromCache() {
  * new data.
  */
 function updateData() {
+  //start spinner
+  const counterCard = document.getElementById('counter-template');
+  counterCard.querySelector('#data').hidden = true;
+  const spinner = counterCard.querySelector('.card-spinner');
+    spinner.hidden = false;
+    
   getCounterFromNetwork().then((counter) => {
     const counterCard = document.getElementById('counter-template');
     counterCard.querySelector('#free').textContent = counter.free;
@@ -93,8 +66,8 @@ function updateData() {
     counterCard.querySelector('#data').hidden = false;
     // If the loading spinner is still visible, remove it.
     const spinner = counterCard.querySelector('.card-spinner');
-    if (spinner) {
-      counterCard.removeChild(spinner);
+    if (!spinner.hidden) {
+      spinner.hidden = true;
     }
   });
 }
